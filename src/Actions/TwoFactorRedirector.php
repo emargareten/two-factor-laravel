@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TwoFactorRedirector
 {
+    protected bool $isRedirectingToChallenge = false;
+
     /**
      * Redirect to two-factor view.
      */
@@ -19,6 +21,8 @@ class TwoFactorRedirector
         if (! $user?->hasEnabledTwoFactorAuthentication()) {
             return redirect()->intended(config('two-factor.home'));
         }
+
+        $this->isRedirectingToChallenge = true;
 
         return $this->twoFactorChallengeResponse($request, $user);
     }
@@ -42,5 +46,13 @@ class TwoFactorRedirector
         return $request->wantsJson()
                     ? response()->json(['two_factor' => true])
                     : redirect()->route('two-factor-challenge.create');
+    }
+
+    /**
+     * Check whether redirect is redirecting to challenge
+     */
+    public function isRedirectingToChallenge(): bool
+    {
+        return $this->isRedirectingToChallenge;
     }
 }
