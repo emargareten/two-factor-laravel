@@ -1,0 +1,48 @@
+{
+    "name": "emargareten/two-factor-laravel",
+    "description": "Two-factor authentication implementation for Laravel applications.",
+    "keywords": ["laravel", "2fa", "two-factor-authentication"],
+    "license": "MIT",
+    "homepage": "https://github.com/emargareten/two-factor-laravel",
+    "require": {
+        "php": "^8.0",
+        "bacon/bacon-qr-code": "^2.0",
+        "laravel/framework": "^9.0|^10.0",
+        "pragmarx/google2fa": "^7.0|^8.0.1"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.6",
+        "nunomaduro/larastan": "^2.4",
+        "orchestra/testbench": "^8.0",
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Emargareten\\TwoFactor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Emargareten\\TwoFactor\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Emargareten\\TwoFactor\\ServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
