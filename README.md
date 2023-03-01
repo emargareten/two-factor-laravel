@@ -67,9 +67,7 @@ class TwoFactorAuthenticationController extends Controller
             return back()->with('status', 'Two-factor authentication is already enabled');
         }
 
-        if (! $user->hasPendingTwoFactorAuthentication()) {
-            $user->enableTwoFactorAuthentication();
-        }
+        $user->enableTwoFactorAuthentication();
 
         return redirect()->route('account.two-factor-authentication.confirm.show');
     }
