@@ -107,8 +107,9 @@ return [
     | To avoid problems with clocks that are slightly out of sync, we do not
     | check against the current key only but also consider window keys each
     | from the past and future, each window key is a 30 second timespan.
-    | Here you can set the window, the defaults is 4 which equals to
-    | the previous two and next two minutes.
+    | Here you can set the window, 0 means no window, 1 means 1 key in
+    | the past and 1 in the future, 2 means 2 keys in the past and 2
+    | in the future, etc.
     |
     */
 

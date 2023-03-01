@@ -8,6 +8,10 @@ use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\Fill;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
+use Emargareten\TwoFactor\Actions\ConfirmTwoFactorAuthentication;
+use Emargareten\TwoFactor\Actions\DisableTwoFactorAuthentication;
+use Emargareten\TwoFactor\Actions\EnableTwoFactorAuthentication;
+use Emargareten\TwoFactor\Actions\GenerateNewRecoveryCodes;
 use Emargareten\TwoFactor\Contracts\TwoFactorProvider;
 
 trait TwoFactorAuthenticatable
@@ -86,5 +90,37 @@ trait TwoFactorAuthenticatable
     public function getCurrentOtp(): string
     {
         return app(TwoFactorProvider::class)->getCurrentOtp($this->two_factor_secret);
+    }
+
+    /**
+     * Enable two-factor authentication for the user.
+     */
+    public function enableTwoFactorAuthentication(): void
+    {
+        app(EnableTwoFactorAuthentication::class)($this);
+    }
+
+    /**
+     * Disable two-factor authentication for the user.
+     */
+    public function disableTwoFactorAuthentication(): void
+    {
+        app(DisableTwoFactorAuthentication::class)($this);
+    }
+
+    /**
+     * Confirm two-factor authentication for the user.
+     */
+    public function confirmTwoFactorAuthentication(string $code): void
+    {
+        app(ConfirmTwoFactorAuthentication::class)($this, $code);
+    }
+
+    /**
+     * Generate new recovery codes for the user.
+     */
+    public function generateNewRecoveryCodes(): void
+    {
+        app(GenerateNewRecoveryCodes::class)($this);
     }
 }
