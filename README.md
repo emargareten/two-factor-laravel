@@ -170,11 +170,13 @@ or if using SMS/email
 public function login(Request $request, TwoFactorRedirector $redirector): Response
 {
     // do login stuff...
+    
+     $user = $request->user();
 
      $redirect = $redirector->redirect($request);
      
      if ($redirector->isRedirectingToChallenge()) {
-         $request->user()->notify(new SendOTP);
+         $user->notify(new SendOTP);
      }
      
      return $redirect;
