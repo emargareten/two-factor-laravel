@@ -2,8 +2,6 @@
 
 namespace Emargareten\TwoFactor\Tests;
 
-use Emargareten\TwoFactor\TwoFactorAuthenticatable;
-use Illuminate\Foundation\Auth\User;
 use PragmaRX\Google2FA\Google2FA;
 
 class TwoFactorAuthenticationChallengeTest extends OrchestraTestCase

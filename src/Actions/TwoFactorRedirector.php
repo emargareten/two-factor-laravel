@@ -30,7 +30,7 @@ class TwoFactorRedirector
     /**
      * Get the two-factor authentication enabled response.
      *
-     * @param \App\Models\User $user
+     * @param  \App\Models\User  $user
      */
     protected function twoFactorChallengeResponse(Request $request, $user): Response
     {
@@ -44,8 +44,8 @@ class TwoFactorRedirector
         TwoFactorAuthenticationChallenged::dispatch($user);
 
         return $request->wantsJson()
-                    ? response()->json(['two_factor' => true])
-                    : redirect()->route('two-factor-challenge.create');
+            ? response()->json(['two_factor' => true])
+            : redirect()->route('two-factor-challenge.create');
     }
 
     /**

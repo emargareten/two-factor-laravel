@@ -3,8 +3,6 @@
 namespace Emargareten\TwoFactor\Tests;
 
 use Emargareten\TwoFactor\ServiceProvider;
-use Emargareten\TwoFactor\TwoFactorAuthenticatable;
-use Illuminate\Foundation\Auth\User;
 use Orchestra\Testbench\TestCase;
 
 abstract class OrchestraTestCase extends TestCase
