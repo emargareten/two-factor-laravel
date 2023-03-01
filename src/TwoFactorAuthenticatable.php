@@ -37,14 +37,6 @@ trait TwoFactorAuthenticatable
     }
 
     /**
-     * Determine if two-factor authentication is pending confirmation.
-     */
-    public function hasPendingTwoFactorAuthentication(): bool
-    {
-        return ! is_null($this->two_factor_secret) && is_null($this->two_factor_confirmed_at);
-    }
-
-    /**
      * Replace the given recovery code with a new one in the user's stored codes.
      */
     public function replaceRecoveryCode(string $code): void
