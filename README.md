@@ -169,28 +169,18 @@ public function login(Request $request, TwoFactorRedirector $redirector): Respon
 }
 ```
 
-or if using SMS/email
+This will redirect the user to the `two-factor-challenge.create` route.
+
+The `TwoFactorAuthenticationChallenged` event will be fired if the user is being redirected to the two-factor challenge page, you can listen to this event to add additional logic, for example, you could send the one-time password via SMS/email:
 
 ```php
-public function login(Request $request, TwoFactorRedirector $redirector): Response
+public function handle(TwoFactorAuthenticationChallenged $event): void
 {
-    // do login stuff...
-    
-     $user = $request->user();
-
-     $redirect = $redirector->redirect($request);
-     
-     if ($redirector->isRedirectingToChallenge()) {
-         $user->notify(new SendOTP);
-     }
-     
-     return $redirect;
+    $event->user->notify(new CompleteSignInOTP);
 }
 ```
 
-This will redirect the user to the `two-factor-challenge.create` route.
-
-You will need to provide a view for this route. This view should contain a form where the user can enter the one-time password, you should bind the view in the `register` method of your `AppServiceProvider` by calling the `TwoFactor::challengeView()` method:
+You will need to provide a view for the `two-factor-challenge.create` route. This view should contain a form where the user can enter the one-time password, you should bind the view in the `register` method of your `AppServiceProvider` by calling the `TwoFactor::challengeView()` method:
 
 ```php
 /**
