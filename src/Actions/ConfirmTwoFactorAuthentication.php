@@ -22,7 +22,7 @@ class ConfirmTwoFactorAuthentication
      *
      * @param  \App\Models\User  $user
      */
-    public function __invoke($user, string $code, ?string $method): void
+    public function __invoke($user, string $code, ?string $method = null): void
     {
         if (empty($user->two_factor_secret)
             || empty($code)

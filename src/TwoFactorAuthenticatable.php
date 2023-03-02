@@ -103,7 +103,7 @@ trait TwoFactorAuthenticatable
     /**
      * Confirm two-factor authentication for the user.
      */
-    public function confirmTwoFactorAuthentication(string $code, ?string $method): void
+    public function confirmTwoFactorAuthentication(string $code, ?string $method = null): void
     {
         app(ConfirmTwoFactorAuthentication::class)($this, $code, $method);
     }
