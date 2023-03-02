@@ -78,8 +78,9 @@ class TwoFactorAuthenticationController extends Controller
 }
 ```
 
-After enabling two-factor authentication,
-the user must still "confirm" their two-factor authentication configuration by providing a valid two-factor authentication code. You should provide a way for the user to do this. For example, you could provide a view that displays the QR code and secret key for the user to scan into their authenticator app:
+### Confirming Two-Factor Authentication
+
+After enabling two-factor authentication, the user must still "confirm" their two-factor authentication configuration by providing a valid two-factor authentication code. You should provide a way for the user to do this. For example, you could provide a view that displays the QR code and secret key for the user to scan into their authenticator app:
 ```php
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -134,6 +135,10 @@ $user->getCurrentOtp();
 
 > **Note**
 > When sending the one-time-password via SMS/email, you should set the window config to a higher value, to allow the user to enter the one-time password after it has been sent.
+
+The `confirmTwoFactorAuthentication` method takes an optional second parameter to specify the two-factor method, this is totally optional, it can be useful if you have multiple methods for receiving the one-time password.
+
+### Disabling Two-Factor Authentication
 
 You should also provide a way for the user to disable two-factor authentication. This can be done by calling the `disableTwoFactorAuthentication` method on the user model:
 

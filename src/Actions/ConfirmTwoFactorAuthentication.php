@@ -22,7 +22,7 @@ class ConfirmTwoFactorAuthentication
      *
      * @param  \App\Models\User  $user
      */
-    public function __invoke($user, string $code): void
+    public function __invoke($user, string $code, ?string $method): void
     {
         if (empty($user->two_factor_secret)
             || empty($code)
@@ -35,6 +35,7 @@ class ConfirmTwoFactorAuthentication
 
         $user->forceFill([
             'two_factor_confirmed_at' => now(),
+            'two_factor_method' => $method,
         ])->save();
 
         TwoFactorAuthenticationConfirmed::dispatch($user);

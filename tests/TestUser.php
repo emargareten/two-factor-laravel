@@ -16,6 +16,7 @@ use Illuminate\Foundation\Auth\User;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $two_factor_secret
  * @property array|null $two_factor_recovery_codes
+ * @property string|null $two_factor_method
  * @property \Illuminate\Support\Carbon|null $two_factor_confirmed_at
  *
  * @method static TestUser create(array $attributes = [])
