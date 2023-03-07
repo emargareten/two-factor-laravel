@@ -4,6 +4,8 @@ namespace Emargareten\TwoFactor\Http\Requests;
 
 use Closure;
 use Emargareten\TwoFactor\Contracts\TwoFactorProvider;
+use Emargareten\TwoFactor\Events\TwoFactorAuthenticationVerified;
+use Emargareten\TwoFactor\Events\TwoFactorAuthenticationVerifying;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Foundation\Http\FormRequest;
@@ -56,6 +58,8 @@ class TwoFactorChallengeRequest extends FormRequest
                 return;
             }
 
+            TwoFactorAuthenticationVerifying::dispatch($this->challengedUser());
+
             $valid = app(TwoFactorProvider::class)->verify(
                 $this->challengedUser()->two_factor_secret, $value
             );
@@ -63,6 +67,8 @@ class TwoFactorChallengeRequest extends FormRequest
             if (! $valid) {
                 $fail(__(config('two-factor.validation_messages.invalid_code')));
             }
+
+            TwoFactorAuthenticationVerified::dispatch($this->challengedUser());
         };
     }
 

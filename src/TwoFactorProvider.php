@@ -3,7 +3,6 @@
 namespace Emargareten\TwoFactor;
 
 use Emargareten\TwoFactor\Contracts\TwoFactorProvider as TwoFactorProviderContract;
-use Emargareten\TwoFactor\Events\TwoFactorAuthenticationVerifying;
 use Illuminate\Contracts\Cache\Repository;
 use PragmaRX\Google2FA\Google2FA;
 
@@ -49,8 +48,6 @@ class TwoFactorProvider implements TwoFactorProviderContract
      */
     public function verify(string $secret, string $code): bool
     {
-        TwoFactorAuthenticationVerifying::dispatch();
-
         if (is_int($window = $this->getWindow())) {
             $this->engine->setWindow($window);
         }

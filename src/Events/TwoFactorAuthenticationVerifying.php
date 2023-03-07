@@ -2,9 +2,7 @@
 
 namespace Emargareten\TwoFactor\Events;
 
-use Illuminate\Foundation\Events\Dispatchable;
-
-class TwoFactorAuthenticationVerifying
+class TwoFactorAuthenticationVerifying extends TwoFactorAuthenticationEvent
 {
-    use Dispatchable;
+    //
 }
