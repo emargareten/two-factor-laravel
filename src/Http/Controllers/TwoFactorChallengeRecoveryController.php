@@ -45,7 +45,7 @@ class TwoFactorChallengeRecoveryController extends Controller
 
         $user->replaceRecoveryCode($request->input('recovery_code'));
 
-        event(new RecoveryCodeReplaced($user, $request->input('recovery_code')));
+        RecoveryCodeReplaced::dispatch($user, $request->input('recovery_code'));
 
         $this->guard->login($user, $request->remember());
 

@@ -2,11 +2,11 @@
 
 namespace Emargareten\TwoFactor\Events;
 
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Foundation\Events\Dispatchable;
 
 class RecoveryCodeReplaced
 {
-    use SerializesModels;
+    use Dispatchable;
 
     /**
      * Create a new event instance.
