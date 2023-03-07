@@ -4,6 +4,7 @@ namespace Emargareten\TwoFactor\Actions;
 
 use Emargareten\TwoFactor\Contracts\TwoFactorProvider;
 use Emargareten\TwoFactor\Events\TwoFactorAuthenticationConfirmed;
+use Emargareten\TwoFactor\Events\TwoFactorAuthenticationConfirming;
 use Illuminate\Validation\ValidationException;
 
 class ConfirmTwoFactorAuthentication
@@ -24,6 +25,8 @@ class ConfirmTwoFactorAuthentication
      */
     public function __invoke($user, string $code, ?string $method = null): void
     {
+        TwoFactorAuthenticationConfirming::dispatch($user);
+
         if (empty($user->two_factor_secret)
             || empty($code)
             || ! $this->provider->verify($user->two_factor_secret, $code)

@@ -3,6 +3,7 @@
 namespace Emargareten\TwoFactor\Actions;
 
 use Emargareten\TwoFactor\Events\TwoFactorAuthenticationDisabled;
+use Emargareten\TwoFactor\Events\TwoFactorAuthenticationDisabling;
 
 class DisableTwoFactorAuthentication
 {
@@ -13,6 +14,8 @@ class DisableTwoFactorAuthentication
      */
     public function __invoke($user): void
     {
+        TwoFactorAuthenticationDisabling::dispatch($user);
+
         if (
             ! is_null($user->two_factor_secret)
             || ! is_null($user->two_factor_recovery_codes)

@@ -4,6 +4,7 @@ namespace Emargareten\TwoFactor\Actions;
 
 use Emargareten\TwoFactor\Contracts\TwoFactorProvider;
 use Emargareten\TwoFactor\Events\TwoFactorAuthenticationEnabled;
+use Emargareten\TwoFactor\Events\TwoFactorAuthenticationEnabling;
 use Emargareten\TwoFactor\RecoveryCode;
 use Illuminate\Support\Collection;
 
@@ -25,6 +26,8 @@ class EnableTwoFactorAuthentication
      */
     public function __invoke($user): void
     {
+        TwoFactorAuthenticationEnabling::dispatch($user);
+
         $user->forceFill([
             'two_factor_secret' => $this->provider->generateSecretKey(),
             'two_factor_recovery_codes' => Collection::times(8, function () {
