@@ -23,4 +23,14 @@ interface TwoFactorProvider
      * Verify the given token.
      */
     public function verify(string $secret, string $code): bool;
+
+    /**
+     * Set the window.
+     */
+    public function setWindow(int $window): self;
+
+    /**
+     * Get the window.
+     */
+    public function getWindow(): ?int;
 }

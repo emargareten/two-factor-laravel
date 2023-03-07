@@ -2,6 +2,7 @@
 
 namespace Emargareten\TwoFactor\Tests;
 
+use Emargareten\TwoFactor\Contracts\TwoFactorProvider;
 use PragmaRX\Google2FA\Google2FA;
 
 class TwoFactorAuthenticationChallengeTest extends OrchestraTestCase
@@ -43,10 +44,8 @@ class TwoFactorAuthenticationChallengeTest extends OrchestraTestCase
 
     public function test_two_factor_challenge_fails_for_old_otp_and_zero_window(): void
     {
-        app('config')->set('auth.providers.users.model', TestUser::class);
-
         //Setting window to 0 should mean any old OTP is instantly invalid
-        app('config')->set('two-factor.window', 0);
+        app(TwoFactorProvider::class)->setWindow(0);
 
         $this->loadLaravelMigrations(['--database' => 'testbench']);
         $this->artisan('migrate', ['--database' => 'testbench'])->run();

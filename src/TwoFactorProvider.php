@@ -8,6 +8,8 @@ use PragmaRX\Google2FA\Google2FA;
 
 class TwoFactorProvider implements TwoFactorProviderContract
 {
+    protected int $window;
+
     /**
      * Create a new two-factor authentication provider instance.
      *
@@ -46,8 +48,8 @@ class TwoFactorProvider implements TwoFactorProviderContract
      */
     public function verify(string $secret, string $code): bool
     {
-        if (is_int($customWindow = config('two-factor.window'))) {
-            $this->engine->setWindow($customWindow);
+        if (is_int($window = $this->getWindow())) {
+            $this->engine->setWindow($window);
         }
 
         $timestamp = $this->engine->verifyKeyNewer(
@@ -65,5 +67,23 @@ class TwoFactorProvider implements TwoFactorProviderContract
         }
 
         return false;
+    }
+
+    /**
+     * Set the window.
+     */
+    public function setWindow(int $window): self
+    {
+        $this->window = $window;
+
+        return $this;
+    }
+
+    /**
+     * Get the window.
+     */
+    public function getWindow(): ?int
+    {
+        return $this->window ?? config('two-factor.window');
     }
 }
