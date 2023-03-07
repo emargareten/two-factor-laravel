@@ -134,7 +134,7 @@ $user->getCurrentOtp();
 ```
 
 > **Note**
-> When sending the one-time-password via SMS/email, you should set the window config to a higher value, to allow the user to enter the one-time password after it has been sent.
+> When sending the one-time-password via SMS/email, you should set the window to a higher value, to allow the user to enter the one-time password after it has been sent.
 
 The `confirmTwoFactorAuthentication` method takes an optional second parameter to specify the two-factor method, this is totally optional, it can be useful if you have multiple methods for receiving the one-time password.
 
