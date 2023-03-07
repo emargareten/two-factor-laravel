@@ -2,6 +2,7 @@
 
 namespace Emargareten\TwoFactor\Tests;
 
+use App\Models\User;
 use Emargareten\TwoFactor\Contracts\TwoFactorProvider;
 use PragmaRX\Google2FA\Google2FA;
 
@@ -21,7 +22,7 @@ class TwoFactorAuthenticationChallengeTest extends OrchestraTestCase
         $userSecret = $tfaEngine->generateSecretKey();
         $validOtp = $tfaEngine->getCurrentOtp($userSecret);
 
-        $user = TestUser::create([
+        $user = User::create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => bcrypt('secret'),
@@ -55,7 +56,7 @@ class TwoFactorAuthenticationChallengeTest extends OrchestraTestCase
         $currentTs = $tfaEngine->getTimestamp();
         $previousOtp = $tfaEngine->oathTotp($userSecret, $currentTs - 1);
 
-        $user = TestUser::create([
+        $user = User::create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => bcrypt('secret'),
@@ -80,7 +81,7 @@ class TwoFactorAuthenticationChallengeTest extends OrchestraTestCase
 
     public function test_two_factor_challenge_can_be_passed_via_recovery_code(): void
     {
-        $user = TestUser::create([
+        $user = User::create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => bcrypt('secret'),
@@ -107,7 +108,7 @@ class TwoFactorAuthenticationChallengeTest extends OrchestraTestCase
 
     public function test_two_factor_challenge_can_fail_via_recovery_code(): void
     {
-        $user = TestUser::create([
+        $user = User::create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => bcrypt('secret'),

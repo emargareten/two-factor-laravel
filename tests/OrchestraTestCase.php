@@ -2,6 +2,7 @@
 
 namespace Emargareten\TwoFactor\Tests;
 
+use App\Models\User;
 use Emargareten\TwoFactor\ServiceProvider;
 use Orchestra\Testbench\TestCase;
 
@@ -16,9 +17,11 @@ abstract class OrchestraTestCase extends TestCase
 
     protected function getEnvironmentSetUp($app)
     {
+        require_once __DIR__.'/User.php';
+
         $app['migrator']->path(__DIR__.'/../database/migrations');
 
-        $app['config']->set('auth.providers.users.model', TestUser::class);
+        $app['config']->set('auth.providers.users.model', User::class);
 
         $app['config']->set('database.default', 'testbench');
 

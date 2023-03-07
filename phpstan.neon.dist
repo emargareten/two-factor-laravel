@@ -6,8 +6,6 @@ parameters:
         - routes
         - src
         - tests
-    typeAliases:
-        \App\Models\User: '\Emargareten\TwoFactor\Tests\TestUser'
     ignoreErrors:
         - '#Call to an undefined method Illuminate\\Contracts\\Auth\\StatefulGuard::getProvider\(\)#'
     checkMissingIterableValueType: false

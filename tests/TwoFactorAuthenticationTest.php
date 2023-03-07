@@ -2,6 +2,8 @@
 
 namespace Emargareten\TwoFactor\Tests;
 
+use App\Models\User;
+
 class TwoFactorAuthenticationTest extends OrchestraTestCase
 {
     protected function setUp(): void
@@ -14,7 +16,7 @@ class TwoFactorAuthenticationTest extends OrchestraTestCase
 
     public function test_two_factor_authentication_can_be_enabled(): void
     {
-        $user = TestUser::create([
+        $user = User::create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => bcrypt('secret'),
@@ -31,7 +33,7 @@ class TwoFactorAuthenticationTest extends OrchestraTestCase
 
     public function test_two_factor_authentication_can_be_confirmed(): void
     {
-        $user = TestUser::create([
+        $user = User::create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => bcrypt('secret'),
@@ -50,7 +52,7 @@ class TwoFactorAuthenticationTest extends OrchestraTestCase
 
     public function test_two_factor_authentication_can_be_confirmed_with_method(): void
     {
-        $user = TestUser::create([
+        $user = User::create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => bcrypt('secret'),
@@ -70,7 +72,7 @@ class TwoFactorAuthenticationTest extends OrchestraTestCase
 
     public function test_two_factor_authentication_can_be_disabled(): void
     {
-        $user = TestUser::create([
+        $user = User::create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => bcrypt('secret'),

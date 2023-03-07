@@ -1,9 +1,9 @@
 <?php
 
-namespace Emargareten\TwoFactor\Tests;
+namespace App\Models;
 
 use Emargareten\TwoFactor\TwoFactorAuthenticatable;
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @property int $id
@@ -19,9 +19,9 @@ use Illuminate\Foundation\Auth\User;
  * @property string|null $two_factor_method
  * @property \Illuminate\Support\Carbon|null $two_factor_confirmed_at
  *
- * @method static TestUser create(array $attributes = [])
+ * @method static User create(array $attributes = [])
  */
-class TestUser extends User
+class User extends Authenticatable
 {
     use TwoFactorAuthenticatable;
 
