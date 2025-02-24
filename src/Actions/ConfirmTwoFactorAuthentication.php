@@ -16,9 +16,7 @@ class ConfirmTwoFactorAuthentication
      *
      * @return void
      */
-    public function __construct(protected TwoFactorProvider $provider)
-    {
-    }
+    public function __construct(protected TwoFactorProvider $provider) {}
 
     /**
      * Confirm the two-factor authentication configuration for the user.

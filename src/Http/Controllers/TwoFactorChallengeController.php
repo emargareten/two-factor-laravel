@@ -16,9 +16,7 @@ class TwoFactorChallengeController extends Controller
      *
      * @return void
      */
-    public function __construct(protected StatefulGuard $guard)
-    {
-    }
+    public function __construct(protected StatefulGuard $guard) {}
 
     /**
      * Show the two-factor authentication challenge view.

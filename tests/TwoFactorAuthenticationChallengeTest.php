@@ -45,7 +45,7 @@ class TwoFactorAuthenticationChallengeTest extends OrchestraTestCase
 
     public function test_two_factor_challenge_fails_for_old_otp_and_zero_window(): void
     {
-        //Setting window to 0 should mean any old OTP is instantly invalid
+        // Setting window to 0 should mean any old OTP is instantly invalid
         app(TwoFactorProvider::class)->setWindow(0);
 
         $this->loadLaravelMigrations(['--database' => 'testbench']);

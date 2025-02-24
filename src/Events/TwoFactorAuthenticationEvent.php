@@ -14,7 +14,5 @@ abstract class TwoFactorAuthenticationEvent
      * @param  \App\Models\User  $user
      * @return void
      */
-    public function __construct(public $user)
-    {
-    }
+    public function __construct(public $user) {}
 }

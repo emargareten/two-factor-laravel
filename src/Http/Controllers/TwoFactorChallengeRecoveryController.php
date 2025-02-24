@@ -3,7 +3,6 @@
 namespace Emargareten\TwoFactor\Http\Controllers;
 
 use Emargareten\TwoFactor\Contracts\TwoFactorChallengeRecoveryViewResponse;
-use Emargareten\TwoFactor\Contracts\TwoFactorChallengeViewResponse;
 use Emargareten\TwoFactor\Events\RecoveryCodeReplaced;
 use Emargareten\TwoFactor\Http\Requests\TwoFactorChallengeRequest;
 use Illuminate\Auth\AuthenticationException;
@@ -18,14 +17,12 @@ class TwoFactorChallengeRecoveryController extends Controller
      *
      * @return void
      */
-    public function __construct(protected StatefulGuard $guard)
-    {
-    }
+    public function __construct(protected StatefulGuard $guard) {}
 
     /**
      * Show the two-factor authentication challenge view.
      */
-    public function create(): TwoFactorChallengeViewResponse
+    public function create(): TwoFactorChallengeRecoveryViewResponse
     {
         $model = $this->guard->getProvider()->getModel();
 

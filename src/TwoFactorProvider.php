@@ -15,9 +15,7 @@ class TwoFactorProvider implements TwoFactorProviderContract
      *
      * @return void
      */
-    public function __construct(protected Google2FA $engine, protected ?Repository $cache = null)
-    {
-    }
+    public function __construct(protected Google2FA $engine, protected ?Repository $cache = null) {}
 
     /**
      * Generate a new secret key.

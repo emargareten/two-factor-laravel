@@ -15,9 +15,7 @@ class EnableTwoFactorAuthentication
      *
      * @return void
      */
-    public function __construct(protected TwoFactorProvider $provider)
-    {
-    }
+    public function __construct(protected TwoFactorProvider $provider) {}
 
     /**
      * Enable two-factor authentication for the user.

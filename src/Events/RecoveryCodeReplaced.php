@@ -14,7 +14,5 @@ class RecoveryCodeReplaced
      * @param  \App\Models\User  $user
      * @return void
      */
-    public function __construct(public $user, public string $code)
-    {
-    }
+    public function __construct(public $user, public string $code) {}
 }

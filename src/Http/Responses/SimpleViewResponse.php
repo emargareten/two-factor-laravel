@@ -6,7 +6,7 @@ use Emargareten\TwoFactor\Contracts\TwoFactorChallengeRecoveryViewResponse;
 use Emargareten\TwoFactor\Contracts\TwoFactorChallengeViewResponse;
 use Illuminate\Contracts\Support\Responsable;
 
-class SimpleViewResponse implements TwoFactorChallengeViewResponse, TwoFactorChallengeRecoveryViewResponse
+class SimpleViewResponse implements TwoFactorChallengeRecoveryViewResponse, TwoFactorChallengeViewResponse
 {
     /**
      * Create a new response instance.
@@ -14,9 +14,7 @@ class SimpleViewResponse implements TwoFactorChallengeViewResponse, TwoFactorCha
      * @param  callable|string  $view
      * @return void
      */
-    public function __construct(protected $view)
-    {
-    }
+    public function __construct(protected $view) {}
 
     /**
      * Create an HTTP response that represents the object.

@@ -104,7 +104,7 @@ class TwoFactorChallengeRequest extends FormRequest
         $model = app(StatefulGuard::class)->getProvider()->getModel();
 
         if (! $this->session()->has('two-factor.login.id') || ! $user = $model::find($this->session()->get('two-factor.login.id'))) {
-            throw new AuthenticationException();
+            throw new AuthenticationException;
         }
 
         return $this->challengedUser = $user;
